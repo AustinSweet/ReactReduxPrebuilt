@@ -7,8 +7,7 @@ class AddItem extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.state = {
-          data1: '',
-          data2: ''
+          formInfo: this.props.formInfo,
         }
     }
 
@@ -27,17 +26,13 @@ class AddItem extends Component {
         return(
           <>
               <form onSubmit={this.handleSubmit}>
-                <input 
-                name='data1'
-                type="text"
-                placeholder={this.props.stringOne}
-                onChange={this.handleChange} />
-                <input 
-                name='data2'
-                type="text"
-                placeholder={this.props.stringTwo}
-                onChange={this.handleChange} />
-                <input type="submit" />
+                {this.state.formInfo.map((i) =>
+                <input key={i.name}
+                name={i.name}
+                type={i.type}
+                placeholder={i.placeholder}
+                onChange={this.handleChange} />)}
+                <input type='submit'></input>
               </form>
           </>
         )
